@@ -2,22 +2,81 @@
 <html>
 <head>
 <title>Flask Multiple Upload</title>
+<style>
+body{background-color: #e6ffff }
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</style>
 </head>
 <body>
 
-<h1>Upload Successful!</h1>
+<h1>Detection of Helmet-Violation by 2-Wheelers</h1>
 
-Here are the files you just uploaded. Your form data was discarded in this demo
-app, but if you check your terminal window you can see that all their names and
-values were submitted to the server.<p>
+<h3>Instructions:<p></h3>
 
-<a href="{{ url_for('index') }}">Back to front page</a><p>
+1. The following cropped images contain 2-wheelers found to commit Helmet-violation.<p>
+2. Click on <strong>Download All Images</strong> to save all listed images.<p>
+3. Alternatively, you can download specific images by clicking <strong>Download Image</strong>.<p>
+
+<hr><p>
+
+<a href="{{ url_for('index') }}">Upload Different Video</a><p>
+<hr><p>
+<hr><p>
+
+
+<!-- <center><input type="submit" value="Download All Images" id="download-button"></center>
+
+ -->
+<button type="button" onclick="compress_zip('{{uuid}}')">Compress as ZIP</button>
+<script>
+    function compress_zip(foldername){
+        console.log(foldername);
+        // console.log(file);
+        var theUrl = '/zip/'+foldername;
+        console.log(theUrl);
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+                //callback(xmlHttp.responseText);
+                console.log('Yeah!');
+            }
+        xmlHttp.open("GET", theUrl, true); // true for asynchronous
+        xmlHttp.send();
+    }
+</script>
+
+<a href="{{ url_for('static', filename='uploads/{}.zip'.format(uuid)) }}"download="{{file}}">Download Zip</a>
+
+
+
 
 {% for file in files %}
-    <h2>{{ file }}</h2>
-    <img src="{{ url_for('static', filename='uploads/{}/{}'.format(uuid, file)) }}">
+	<hr><p>
+    <h3>{{ "Filename: "+file+" | Timestamp: " }}</h3>
+    <img src="{{ url_for('static', filename='uploads/{}/{}'.format(uuid, file)) }}" alt="" max-height=50% width=50%>
+    <!-- <a href="{{ url_for('static', filename='uploads/{}/{}'.format(uuid, file)) }}?retrieve_file=1">Download image</a><p> -->
+
+    <!-- <input type="submit" href="{{ url_for('static', filename='uploads/{}/{}'.format(uuid, file)) }}?retrieve_file=1" value="Download Image" id="download-button"> -->
+    <!-- <button type="button" onclick="download_file('{{uuid}}','{{file}}')">Download</button> -->
+    <a href="{{ url_for('static', filename='uploads/{}/{}'.format(uuid, file)) }}" download="{{file}}">Download Image</a>
+    <!-- // <script>
+    // function download_file(uuid,file){
+    //     console.log(uuid);
+    //     console.log(file);
+    //     var theUrl = '/download_helper/static/uploads/'+uuid+'/'+file;
+    //     console.log(theUrl);
+    //     var xmlHttp = new XMLHttpRequest();
+    //     xmlHttp.onreadystatechange = function() {
+    //         if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+    //             //callback(xmlHttp.responseText);
+    //             console.log('Yeah!');
+    //         }
+    //     xmlHttp.open("GET", theUrl, true); // true for asynchronous
+    //     xmlHttp.send();
+    // }
+    // </script>-->
 {% endfor %}
+
 
 </body>
 </html>

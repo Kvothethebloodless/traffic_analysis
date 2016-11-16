@@ -3,7 +3,7 @@
  ******************************************************************************/
 
 // Constants
-var MAX_UPLOAD_FILE_SIZE = 1024*1024; // 1 MB
+var MAX_UPLOAD_FILE_SIZE = 1024*1024*100; // 100 MB
 var UPLOAD_URL = "/upload";
 var NEXT_URL   = "/files/";
 
@@ -48,7 +48,7 @@ function doUpload() {
     // Attach the files.
     for (var i = 0, ie = PENDING_FILES.length; i < ie; i++) {
         // Collect the other form data.
-        fd.append("file", PENDING_FILES[i]);
+        fd.append("filename", PENDING_FILES[i].name);
     }
 
     // Inform the back-end that we're doing this over ajax.

@@ -2,38 +2,23 @@
 <html>
 <head>
 <title>Flask Multiple Upload</title>
+<style>
+body{background-color: #e6ffff }
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</style>
 </head>
 <body>
 
-<h1>Flask Multiple Upload Demo</h1>
+<h1>Detection of Helmet-Violation by 2-Wheelers</h1>
 
-This is a simple Python Flask web app to demonstrate an HTML5 multiple file
-uploader application combined with normal form data.<p>
+<h3>Instructions:<p></h3>
 
-This uses JavaScript to post an Ajax upload to the back-end which gives us a
-nice progress bar to see the status of the upload (note: it doesn't break down
-the status per-picture, instead it's the status of the entire upload altogether).<p>
-
-A normal <code>&lt;form&gt;</code> tag is used for the upload. If the user has
-JavaScript disabled in their browser, a normal HTTP upload is posted to the
-back-end. The same endpoint is used in both cases: when the Ajax request does it,
-the server returns a unique ID to the front-end and JavaScript does the redirect.
-If the user has scripts disabled, the back-end will initiate the redirect for
-them instead.<p>
-
-You can upload files by using the multi-select file upload box (supported in
-most browsers and Internet Explorer 10+), or by dragging and dropping files into
-the dashed box below (again, in most browsers).<p>
-
-This demo app doesn't do anything with the other form data except for print it
-out in the terminal window, but it demonstrates that you <em>can</em> get to the
-other form data in addition to the uploaded files.<p>
-
-Only upload <strong>image type files</strong> in the form below.<p>
+1. Click on <strong>Browse</strong>, and select the video for which you wish to run Helmet-Violation detection.<p>
+2. Click on <strong>Start Detection</strong>.<p>
+3. When it completes running, you can choose several actions on the generated images.<p>
 
 <hr><p>
-
+<center>
 <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
     <strong>Normal Text Box:</strong><br>
     <input type="text" size="20" name="input1" value="uploads"><p>
@@ -72,7 +57,7 @@ Only upload <strong>image type files</strong> in the form below.<p>
 
     <input type="submit" value="Upload!" id="upload-button">
 </form>
-
+</center>
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='js/uploadr.js') }}"></script>
 

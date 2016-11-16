@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="icon" href="https://cdn3.iconfinder.com/data/icons/helmet/154/rome-warrior-soldier-helmet-512.png">
+<title>Helmet Detection</title>
+<style>
+body{background-color: #e6ffff }
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</style>
+</head>
+<body>
+<hr><p>
+
+<h1>Detection of Helmet-Violation by 2-Wheelers</h1>
+<hr><p>
+
+<h3>Instructions:<p></h3>
+
+1. Click on <strong>Browse</strong>, and select the video for which you wish to run Helmet-Violation detection.<p>
+2. Click on <strong>Start Detection</strong>.<p>
+3. When it completes running, you can choose several actions on the generated images.<p>
+
+<hr><p>
+<center>
+<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+    
+<!--
+    <strong>Normal Text Box:</strong><br>
+    <input type="text" size="20" name="input1" value="uploads"><p>
+
+    <strong>Select Box:</strong><br>
+    <select name="selectbox">
+        <option value="abc">ABC</option>
+        <option value="xyz">XYZ</option>
+    </select><p>
+
+    <strong>Checkbox:</strong><br>
+    <input type="checkbox" name="checkbox" value="on" checked> On<p>
+
+    <strong>Radio:</strong><br>
+    <input type="radio" name="radio" value="yes" checked> Yes
+    <input type="radio" name="radio" value="no"> No<p>
+
+    <strong>Text Area:</strong><br>
+    <textarea rows="4" cols="40" name="textarea">Text area contents.</textarea><p>
+-->
+
+
+    <strong>Upload Files: </strong>Select video files.<p>
+    <input id="file-picker" type="file" name="file" accept="image/*" multiple><p>
+
+
+    <fieldset id="progress" style="display: none">
+        <legend>Files Progress</legend>
+
+        <div class="progress-trough">
+            <div id="progress-bar" class="progress-bar">0%</div>
+        </div>
+    </fieldset><p>
+    <input type="submit" value="Start Detection!" id="upload-button">
+</form>
+</center>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery-2.1.1.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/uploadr.js') }}"></script>
+
+</body>
+</html>
